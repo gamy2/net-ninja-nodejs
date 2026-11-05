@@ -1,5 +1,7 @@
 import express from "express";
 import mainRouter from "./server/routes/main";
+import path from "path";
+
 
 const app = express();
 const expressLayout = require('express-ejs-layouts');
@@ -17,8 +19,9 @@ app.use(express.static('public'));
 
 //template engine
 app.use(expressLayout);
-app.set('layout', './layouts/main');
-app.set('view engine', 'ejs');
+app.set("views", path.join(import.meta.dir, "views"));
+app.set("layout", "layouts/main");
+app.set("view engine", "ejs");
 
 
 
