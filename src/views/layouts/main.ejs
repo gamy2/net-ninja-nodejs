@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+    <title><%= locals.title %></title>
+
 </head>
 <body>
-<h2> hamada</h2>
+<h1><%= locals.title %></h1>
+<p><%= locals.description %></p>
 
 <%- body %>
 
+
+<script type="text/javascript" defer src="js/script.js"></script>
 </body>
 </html>
