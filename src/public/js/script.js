@@ -1,1 +1,2 @@
- aleart("olaaaaaaaaaaa")
+alert("hello");
+console.log("script loaded");
