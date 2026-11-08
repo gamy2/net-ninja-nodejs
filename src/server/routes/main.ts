@@ -32,10 +32,28 @@ router.get('', async (req: Request, res: Response) => {
 // }
 // InsertPost();
 
-/**
- * we will make a slug route next commit  
- * router.get('/post/:id', async (req: Request, res: Response) => {});
-*/
+
+/** 
+ * GET /
+ * Home page.
+ */
+  router.get('/post/:id', async (req: Request, res: Response) => {
+    
+  try {
+    const locals = {
+    title: 'Express',
+    description: 'Simple App using Express and EJS'
+  };
+  let slug = req.params.id;
+    const data = await Post.findById({ _id: slug });
+
+    res.render('pages/post', { locals, data });
+  }
+  catch (err) {
+    console.error(err);
+  }
+  });
+
 
 router.get('/about', (req: Request, res: Response) => {
   res.render('pages/about', { title: 'About' });
