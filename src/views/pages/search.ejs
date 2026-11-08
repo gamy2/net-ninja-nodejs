@@ -1,0 +1,9 @@
+<h1>search</h1>
+
+<% data.forEach(element => { %>
+<a href="/post/<%= element._id %>">
+  <h2><%= element.title %></h2>
+</a>
+ <p><%= element.body %></p>
+ 
+<% }) %>

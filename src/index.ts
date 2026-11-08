@@ -20,6 +20,15 @@ async function start() {
 
 start();
 
+
+
+// this steps made to make search logic work, otherwise it will not work because the data is not being parsed correctly
+app.use(express.urlencoded({ extended: true })); 
+app.use(express.json());
+
+
+
+
 app.use(expressLayout);
 app.set("layout", "layouts/main");
 app.set("view engine", "ejs");

@@ -35,16 +35,16 @@ router.get('', async (req: Request, res: Response) => {
 
 /** 
  * GET /
- * Home page.
+ * Post Page.
  */
-  router.get('/post/:id', async (req: Request, res: Response) => {
-    
+router.get('/post/:id', async (req: Request, res: Response) => {
+
   try {
     const locals = {
-    title: 'Express',
-    description: 'Simple App using Express and EJS'
-  };
-  let slug = req.params.id;
+      title: 'Express',
+      description: 'Simple App using Express and EJS'
+    };
+    let slug = req.params.id;
     const data = await Post.findById({ _id: slug });
 
     res.render('pages/post', { locals, data });
@@ -52,8 +52,31 @@ router.get('', async (req: Request, res: Response) => {
   catch (err) {
     console.error(err);
   }
-  });
+});
 
+
+/** 
+ * Post /
+ * Search Logic.
+ */
+router.post('/search', async (req: Request, res: Response) => {
+  try {
+    let searchTerm = req.body.searchTerm; // name of input search in index.ejs
+    const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, ""); // remove special characters from search term
+
+    const data = await Post.find({
+      $or: [
+        { title: { $regex: new RegExp(searchNoSpecialChar, "i") } },
+        { body: { $regex: new RegExp(searchNoSpecialChar, "i") } }
+      ]
+    });
+    console.log(data);
+    // this was for testing if the search term is being parsed correctly, it works fine
+    // res.send (searchNoSpecialChar); 
+    res.render("pages/search", { data });
+  }
+  catch (err) { }
+})
 
 router.get('/about', (req: Request, res: Response) => {
   res.render('pages/about', { title: 'About' });
