@@ -84,3 +84,19 @@ router.get('/about', (req: Request, res: Response) => {
 
 
 export default router;
+
+
+// --------------- basic router ---------------
+// router.get('', async (req: Request, res: Response) => {
+//   const locals = {
+//     title: 'Express',
+//     description: 'Simple App using Express and EJS'
+//   };
+//   try {
+//     const data = await Post.find();
+//     res.render('index', { locals, data });
+//   }
+//   catch (err) {
+//     console.error(err);
+//   }
+// });
