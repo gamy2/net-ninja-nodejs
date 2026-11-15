@@ -53,4 +53,7 @@ async function start() {
   });
 }
 
-start();
+start().catch((err) => {
+  console.error("Application startup failed:", err);
+  process.exitCode = 1;
+});
